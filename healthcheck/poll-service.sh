@@ -8,13 +8,13 @@ fi
 port=$1;
 
 while [ 1 ]; do
-  curl \
+  output=$(curl \
     -I -s \
     --max-time 1 \
     http://localhost:${port}/ \
   | egrep '(HTTP|Date)' \
-  || (echo 'Request Failed' && date);
+  || (echo 'Request Failed' && date));
 
-  echo '';
+  printf "${output}\n\n";
   sleep 1;
 done
